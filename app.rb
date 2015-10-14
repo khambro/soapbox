@@ -16,28 +16,20 @@ while answer == "Y"
   puts "#{username} says #{body}."
   puts "Would you like to post? (Y/N)"
   answer = gets.chomp.upcase
-  #if answer == "Y"
-    #puts "Username?"
-    #answer = gets.chomp
-  #else
+
   hash_o_attrs = {username: username, body: body, created_at: Time.now}
-
-
 
   b = Bubble.new(hash_o_attrs)
 
   array_o_bubbles << (b)
 
-
 end
-
 
 
 puts "Goodbye!"
 
 
-
-puts array_o_bubbles.inspect
+#puts array_o_bubbles.inspect
 
 
 array_o_bubbles.each do |elements|
