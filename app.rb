@@ -40,16 +40,11 @@ puts "Goodbye!"
 puts array_o_bubbles.inspect
 
 
-
-
-#end
-#array_o_bubbles.each do |elements|
-#  puts elements[:username]
-#end
-#
-#  puts elements[:body]
-#  puts elements[:created_at]
-#end
+array_o_bubbles.each do |elements|
+  puts "Username: #{elements.username}"
+  puts "Bubble: #{elements.body}"
+  puts "Time: #{elements.created_at}"
+end
 
 
 
