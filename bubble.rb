@@ -11,7 +11,7 @@ class Bubble
   end
 
   def formatted_string
-    @formatted_string = "Username: #{@username}\nPost: #{@body}\nTime:#{@created_at}"
+    "#{@username}\n#{@body}\n#{@created_at}."
   end
 
 end
