@@ -1,35 +1,69 @@
 require_relative 'bubble'
 
+#username = ''
+#body = ''
+#while username != 'exit' && body != 'exit'
 
-puts "Username?"
+array_o_bubbles = []
 
-username = gets.chomp.downcase
-
-puts "What's on your mind #{username}?"
-
-body = gets.chomp
-
-hash_o_attrs = {username: username, body: body, created_at: Time.now}
-
-
-b = Bubble.new(hash_o_attrs)
-
-puts b.username
-puts b.body
-puts b.created_at
-
-
-
-
-
-
+puts "Would you like to post? (Y/N)"
+answer = gets.chomp.upcase
+while answer == "Y"
+  puts "Username?"
+  username = gets.chomp.downcase
+  puts "What's on your mind #{username}?"
+  body = gets.chomp
+  puts "#{username} says #{body}."
+  puts "Would you like to post? (Y/N)"
+  answer = gets.chomp.upcase
+  #if answer == "Y"
+    #puts "Username?"
+    #answer = gets.chomp
+  #else
+  hash_o_attrs = {username: username, body: body, created_at: Time.now}
 
 
 
+  b = Bubble.new(hash_o_attrs)
+
+  array_o_bubbles << (b)
+
+
+end
 
 
 
-#Create a seperate file called app.rb. Use require_relative 'bubble' at the top of the file to include the code from your bubble class (this is no different than having the code written in this spot). When the script is run from the terminal with ruby app.rb, it will:
+puts "Goodbye!"
+
+
+
+puts array_o_bubbles.inspect
+
+
+
+
+#end
+#array_o_bubbles.each do |elements|
+#  puts elements[:username]
+#end
+#
+#  puts elements[:body]
+#  puts elements[:created_at]
+#end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #Ask for a username
 #Ask for the body of a Bubble
