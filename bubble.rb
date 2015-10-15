@@ -15,9 +15,17 @@ class Bubble
   end
 
   def save_file
-    file = File.open("/Users/khambro/Dropbox/SoapBox/#{@body}.txt", "w")
+    file = File.open("/Users/khambro/Dropbox/SoapBox/#{@body}", "w")
     file.write "#{@username}\n#{@created_at}"
     file.close
   end
+
+  def sort_posts
+      files.each do |post|
+        puts post
+        puts "-" * 50
+      end
+  end
+
 
 end
