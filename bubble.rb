@@ -14,4 +14,10 @@ class Bubble
     "#{@username}\n#{@body}\n#{@created_at}."
   end
 
+  def save_file
+    file = File.open("/Users/khambro/Dropbox/SoapBox/#{@body}.txt", "w")
+    file.write "#{@username}\n#{@created_at}"
+    file.close
+  end
+
 end

@@ -1,11 +1,12 @@
 require_relative 'bubble'
+require 'colorize'
 
 array_o_bubbles = []
 
 #answer = "Y"
 #puts "Would you like to post? (Y/N)"
 #answer = gets.chomp.upcase
-
+puts "Welcome to SoapBox!".black.on_magenta.bold
 puts "Username?"
 username = gets.chomp.downcase
 
@@ -18,14 +19,19 @@ while answer == "Y"
   hash_o_attrs = {
     username: username,
     body: body,
-    created_at: Time.now}
+    created_at: Time.now.strftime("%A, %d %b %Y %l:%M %p")}
 
   bubs = Bubble.new(hash_o_attrs)
 
-  puts bubs.formatted_string
-  puts "-" * 50
+  # creating a file
+  #puts bubs.body
 
-  puts "Would you like to post again #{username} ? (Y/N)"
+  bubs.save_file
+
+  #puts bubs.formatted_string
+  #puts "-" * 50
+
+  puts "Would you like to make a new post #{username} ? (Y/N)"
   answer = gets.chomp.upcase
 
   array_o_bubbles << bubs
