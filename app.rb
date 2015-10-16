@@ -5,9 +5,41 @@ array_o_bubbles = []
 
 puts "\t\t\t\t\tWelcome to SoapBox!\t\t\t\t\t".black.on_light_green.bold
 
+username = File.read("/Users/khambro/CodeBuilders/SoapBox/user")
+
+  if username == ""
+    puts "Username?".black.on_light_green.bold
+    username = gets.chomp.downcase
+    user = File.open("/Users/khambro/CodeBuilders/SoapBox/user", "w")
+    user.write username
+    user.close
+    puts "Welcome #{username}!"
+  else
+    puts "Welcome back #{username}!"
+  end
+
+puts "To sign in as a different user, hit X. Press ENTER to continue as #{username}."
+x= gets.chomp
+    if x.downcase == "x"
+      puts "Username?".black.on_light_green.bold
+      username = gets.chomp.downcase
+      user = File.open("/Users/khambro/CodeBuilders/SoapBox/user", "w")
+      user.write username
+      user.close
+      puts "Welcome #{username}!"
+    end
+
+
+
+username
+#puts "Username?"
+
+#username = gets.chomp.downcase
+
+
 files = Dir.glob("/Users/khambro/Dropbox/SoapBox/*")
 
-time_sorted_feed = files.sort_by {|x| File.birthtime(x)}.reverse
+time_sorted_feed = files.sort_by {|x| File.birthtime(x)}
 
 time_sorted_feed.each do |post|
   r= File.open(post)
@@ -25,37 +57,37 @@ array_o_bubbles.each do |bubble|
   puts "-" * 50
 end
 
-  #puts r.inspect
-  #puts r.class
-
   puts "-" * 50
 
 answer = ''
-if answer != "Exit"
+while answer != "Exit"
   puts "Type (P) to post, (R) to refresh, and (Exit) to exit"
 
   answer = gets.chomp.capitalize
 
-  while answer == "P"
-    puts "Username?".black.on_light_green.bold
-    username = gets.chomp.downcase
-    puts "What's on your mind #{username}?".black.on_light_green.bold
+  if answer == "P"
+    #if username == nil
+    #  puts "Username?".black.on_light_green.bold
+    #  username = gets.chomp.downcase
+    #end
+    puts "What's on your mind @#{username}?".black.on_light_green.bold
     body = gets.chomp
     hash_o_attrs = {
       username: username,
       body: body,
-      created_at: Time.now.strftime("%A, %d %b %Y %l:%M %p")}
+    }
     bubs = Bubble.new(hash_o_attrs)
     bubs.save_file
     puts "-".black.on_magenta.bold * 50
-    puts "Type (P) to post, (R) to refresh, and (Exit) to exit"
-    answer = gets.chomp.capitalize
+    #puts "Type (P) to post, (R) to refresh, and (Exit) to exit"
+    #answer = gets.chomp.capitalize
   end
 
   if answer == "R"
     files = Dir.glob("/Users/khambro/Dropbox/SoapBox/*")
+    time_sorted_feed = files.sort_by {|x| File.birthtime(x)}
 
-    files.each do |post|
+    time_sorted_feed.each do |post|
       r= File.open(post)
       hash_o_attrs = {
         username: r.read.light_cyan.on_black,
@@ -67,7 +99,7 @@ if answer != "Exit"
     end
 
     array_o_bubbles.each do |bubble|
-      puts bubble.formatted_string.sort_by_time
+      puts bubble.formatted_string
       puts "-" * 50
     end
   end
