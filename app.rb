@@ -30,13 +30,6 @@ x= gets.chomp
     end
 
 
-
-username
-#puts "Username?"
-
-#username = gets.chomp.downcase
-
-
 files = Dir.glob("/Users/khambro/Dropbox/SoapBox/*")
 
 time_sorted_feed = files.sort_by {|x| File.birthtime(x)}
@@ -70,7 +63,7 @@ while answer != "Exit"
     #  puts "Username?".black.on_light_green.bold
     #  username = gets.chomp.downcase
     #end
-    puts "What's on your mind @#{username}?".black.on_light_green.bold
+    puts "What's on your mind #{username}?".black.on_light_green.bold
     body = gets.chomp
     hash_o_attrs = {
       username: username,
@@ -104,34 +97,19 @@ while answer != "Exit"
     end
   end
 
+  puts "To sign in as a different user, hit X. Press ENTER to continue as #{username}."
+  x= gets.chomp
+      if x.downcase == "x"
+        puts "Username?".black.on_light_green.bold
+        username = gets.chomp.downcase
+        user = File.open("/Users/khambro/CodeBuilders/SoapBox/user", "w")
+        user.write username
+        user.close
+        puts "Welcome #{username}!"
+      end
+
 end
 
-
-#answer = "Y"
-##while answer == "Y"
-
-
-  #hash_o_attrs = {
-#    username: username,
-#    body: body,
-#    created_at: Time.now.strftime("%A, %d %b %Y %l:%M %p")}
-
-  #bubs = Bubble.new(hash_o_attrs)
-
-  # creating a file
-  #puts bubs.body
-
-  #bubs.save_file
-
-  #puts bubs.formatted_string
-  #puts "-" * 50
-
-  #puts "Would you like to make a new post #{username} ? (Y/N)".black.on_light_green.bold
-  #answer = gets.chomp.upcase
-
-  #array_o_bubbles << bubs
-
-#end
 
 puts "Goodbye #{username}!".black.on_light_green.bold
 
