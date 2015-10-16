@@ -38,7 +38,7 @@ time_sorted_feed.each do |post|
   r= File.open(post)
   hash_o_attrs = {
     username: r.read.light_cyan.on_black,
-    body: File.basename(post),
+    body: File.basename(post).light_magenta,
     created_at: r.birthtime
   }
   bubs = Bubble.new(hash_o_attrs)
