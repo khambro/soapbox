@@ -45,7 +45,7 @@ time_sorted_feed.each do |post|
   array_o_bubbles << bubs
 end
 
-array_o_bubbles.each do |bubble|
+array_o_bubbles.last(10).each do |bubble|
   puts bubble.formatted_string
   puts "-" * 50
 end
@@ -91,7 +91,7 @@ while answer != "Exit"
       array_o_bubbles << bubs
     end
 
-    array_o_bubbles.each do |bubble|
+    array_o_bubbles.last(10).each do |bubble|
       puts bubble.formatted_string
       puts "-" * 50
     end
