@@ -59,10 +59,6 @@ while answer != "Exit"
   answer = gets.chomp.capitalize
 
   if answer == "P"
-    #if username == nil
-    #  puts "Username?".black.on_light_green.bold
-    #  username = gets.chomp.downcase
-    #end
     puts "What's on your mind #{username}?".black.on_light_green.bold
     body = gets.chomp
     hash_o_attrs = {
